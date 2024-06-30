@@ -1,0 +1,9 @@
+<ul>
+    <li id="head">
+        <span class="material-symbols-outlined">add</span>
+        <span>New Note</span>
+    </li>
+    @for (note of noteList; track $index) {
+        <li><span>{{note.title}}</span></li>
+    }
+</ul>

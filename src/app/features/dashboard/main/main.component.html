@@ -1,0 +1,16 @@
+<div class="main">
+    <div class="container">
+        <div class="nav">
+            <div class="user-profile">
+                <app-profile [userDetails]="userName"/>
+            </div>
+            <div class="menu">
+                <app-dynamic-routing/>
+
+            </div>
+        </div>
+        <div class="activity">
+            <router-outlet/>
+        </div>
+    </div>
+</div>

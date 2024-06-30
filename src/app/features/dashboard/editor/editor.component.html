@@ -1,0 +1,6 @@
+<div class="editor">
+    <div class="container">
+        <input #myTextarea type="text" [(ngModel)]="title" (input)="titleOnChanged()" placeholder="Untiled">
+        <textarea (input)="adjustTextareaHeight($event)" name="" id=""  placeholder="Make notes!"></textarea>
+    </div>
+</div>

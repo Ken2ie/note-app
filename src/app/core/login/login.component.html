@@ -1,0 +1,32 @@
+<div class="login">
+    <div class="container">
+        <div class="head">
+            <img src="../../../assets/Vault Logo.png" alt="">
+            <span><b>Sign In to</b> Dashboard</span>
+        </div>
+        <div class="form">
+            <form action="onSubmit">
+                <div class="input">
+                    <label for="email">Email</label>
+                    <input [(ngModel)]="email" name="email" type="email" placeholder="username@mail.com"  id="">
+                    <!-- <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                      <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+                      <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format.</small>
+                    </div> -->
+                </div>
+                <div class="input">
+                    <div class="forgotpassword">
+                        <label for="password">Password</label>
+                        <a href="">Forgot Password?</a>
+                    </div>
+                    <input [(ngModel)]="password" name="password" type="password" placeholder="•••••••••" id="">
+                    <!-- <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                        <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+                        <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+                      </div> -->
+                </div>
+                    <button type="button">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

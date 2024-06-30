@@ -1,0 +1,34 @@
+.main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    max-inline-size: 78rem;
+    margin: auto;
+    display: flex;
+    margin-block-start: 2rem;
+    gap: 50px;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.activity{
+    width: 100%;
+    height: 100%;
+}
+
+.user-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+

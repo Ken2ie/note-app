@@ -1,0 +1,34 @@
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-profile-circle{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    border-radius: 50px;
+    color: #fff;
+}
+
+.user-data{
+    display: flex;
+    flex-direction: column;
+    gap: -15px;
+}
+
+
+.user-fullname{
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.user-email{
+    font-size: 12px;
+    font-weight: 200;
+}
