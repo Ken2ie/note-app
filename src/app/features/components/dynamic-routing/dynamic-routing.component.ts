@@ -12,25 +12,38 @@ import { NotesService } from '../../../services/storage/notes.service';
 })
 export class DynamicRoutingComponent {
 
-  @Output() note = new EventEmitter<string>();
+  @Output() aNote = new EventEmitter<Note>();
 
   newNote : Note = {
-    id: 1,
-    title: "",
+    id: 0,
+    title: "Untitled",
     noteBody: ""
   }
   
-  noteList: Note[] = [];
+  noteList: Array<Note> = [];
 
 
   constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
+    this.getNotes()
+  }
+
+  getNotes(){
     this.noteList = this.notesService.getNotes();
   }
 
   onNoteUpdated(updatedNote: Note): void {
     this.notesService.updateNote(updatedNote);
+  }
+
+  aNewNote(){
+    this.notesService.addNote(this.newNote);
+    this.getNotes();
+  }
+  
+  pushNote(note: Note){
+    this.noteList.push(this.newNote);
   }
   
 }

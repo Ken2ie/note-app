@@ -1,4 +1,3 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -6,60 +5,29 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
+  private readonly sessionStorageKey = 'currentUser';
 
-  headersWithJwt! : HttpHeaders;
-  headersWithoutJwt! : HttpHeaders;
+  constructor() { }
 
-  constructor(private http : HttpClient) {
-     this.headersWithJwt = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-     
-    this.headersWithoutJwt = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-   }
+  login(username: string, password: string): boolean {
+    // For demonstration purposes, we'll assume the username and password are 'user' and 'password'
+    if (username === 'user' && password === 'password') {
+      const user = { username };
+      sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(user));
+      return true;
+    }
+    return false;
+  }
 
+  logout(): void {
+    sessionStorage.removeItem(this.sessionStorageKey);
+  }
 
-  // signUp(formData: Register) {
-  //   return this.http.post<Success>(`${API_BASE_URL}/api/v1/auth/register`, formData);
-  // }
+  isLoggedIn(): boolean {
+    return sessionStorage.getItem(this.sessionStorageKey) !== null;
+  }
 
-  // login(formData: LoginDetails) {
-  //   return this.http.post<VerifiedUser>(`${API_BASE_URL}/api/v1/auth/login`, formData);
-  // }
-  
-  // verifyEmail(formData: VerifyEmail) {
-  //   return this.http.post<VerifiedUser>(`${API_BASE_URL}/api/v1/auth/verify-email`, formData);
-  // }
-
-  // googleOAuth() {
-  //   return this.http.get<VerifiedUser>(`${API_BASE_URL}/api/v1/auth/login/oauth/google`);
-  // }
-  
-  // googleCallBackRequest(formData : callbackRequest){
-  // // Make the HTTP GET request with the parameters
-  // return this.http.post<callbackRequest>(`${API_BASE_URL}/api/v1/auth/auth/callback`, formData);
-  // }
-
-  // // Sessions Service
-  
-  // saveUserAndToken(user: AuthenticatedUser, token: string): void {
-  //   sessionStorage.setItem('currentUser', JSON.stringify(user));
-  //   sessionStorage.setItem('token', token);
-  // }
-
-  // getUser(): AuthenticatedUser | null {
-  //   const user = sessionStorage.getItem('currentUser');
-  //   return user ? JSON.parse(user) : null;
-  // }
-
-  // getToken(): string | null {
-  //   return sessionStorage.getItem('token');
-  // }
-
-  // clearSession(): void {
-  //   sessionStorage.removeItem('currentUser');
-  //   sessionStorage.removeItem('token');
-  // }
+  getCurrentUser(): any {
+    return JSON.parse(sessionStorage.getItem(this.sessionStorageKey) || '{}');
+  }
 }

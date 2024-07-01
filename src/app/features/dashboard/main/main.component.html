@@ -5,8 +5,7 @@
                 <app-profile [userDetails]="userName"/>
             </div>
             <div class="menu">
-                <app-dynamic-routing/>
-
+                <app-dynamic-routing (aNote)="receiveNote($event)"/>
             </div>
         </div>
         <div class="activity">

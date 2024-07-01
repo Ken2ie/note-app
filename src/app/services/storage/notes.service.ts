@@ -34,7 +34,19 @@ export class NotesService {
     }
   }
 
+  findNoteById(id: string): Note | undefined {
+    const notes = this.getNotes();
+    return notes.find(note => note.id.toString() === id);
+  }
+
+  deleteNoteById(id: string): void {
+    let notes = this.getNotes();
+    notes = notes.filter(note => note.id.toString() !== id);
+    this.saveNotes(notes);
+  }
+
   private generateNoteId(): number {
     const notes = this.getNotes();
     return notes.length > 0 ? Math.max(...notes.map(note => note.id)) + 1 : 1;
-  }}
+  }
+}

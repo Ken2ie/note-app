@@ -4,7 +4,7 @@ import { EditorComponent } from '../features/dashboard/editor/editor.component';
 export const routes: Routes = [
 
     {
-        path: "",
+        path: ":id",
         component: EditorComponent
     },
     {

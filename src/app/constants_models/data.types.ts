@@ -137,7 +137,7 @@ export interface AuthenticatedUser {
   }
 
   export interface Note {
-    id: number;
-    title: string;
-    noteBody: string;
-  }
+  id: number;
+  title: string;
+  noteBody: string;
+}
