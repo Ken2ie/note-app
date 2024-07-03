@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Note } from '../../../constants_models/data.types';
 import { NotesService } from '../../../services/storage/notes.service';
+import { SharingDataService } from '../../../services/sharing-data/sharing-data.service';
 
 @Component({
   selector: 'app-dynamic-routing',
@@ -23,7 +24,7 @@ export class DynamicRoutingComponent {
   noteList: Array<Note> = [];
 
 
-  constructor(private notesService: NotesService) { }
+  constructor(private notesService: NotesService, private sharingData : SharingDataService) { }
 
   ngOnInit(): void {
     this.getNotes()
@@ -35,6 +36,20 @@ export class DynamicRoutingComponent {
 
   onNoteUpdated(updatedNote: Note): void {
     this.notesService.updateNote(updatedNote);
+    this.getNotes();
+  }
+
+  listToANoteChange(){
+    this.sharingData.data$.subscribe({
+      next : (n : Note[]) => {
+        this.noteList = n;
+      }
+    })
+  }
+
+  savePreviousNote(note : Note){
+    this.notesService.previousNote(note.id.toString());
+    
   }
 
   aNewNote(){

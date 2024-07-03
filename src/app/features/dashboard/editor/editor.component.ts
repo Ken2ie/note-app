@@ -49,6 +49,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getNoteFromId();
+    this.noteForm.setValue(this.noteService.getPreviousNote());
+    console.log(this.noteService.getPreviousNote());
   }
 
   getNoteFromId() {
@@ -58,9 +60,12 @@ export class EditorComponent implements OnInit, AfterViewInit {
         // Fetch the note based on the id
         const note = this.noteService.findNoteById(this.id);
         if (note) {
+          this.noteService.previousNote(this.id);
           this.noteForm.setValue(note);
           this.titleUpdater.updatePageTitle(this.aNote.title);
           this.noteForm.patchValue(note); // Update the form with note data
+        } else {
+          this.noteService.getPreviousNote();
         }
       }
     });
@@ -72,6 +77,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
     textarea.style.height = `${textarea.scrollHeight}px`;
     this.updateNote()
     this.getAllNotes();
+    this.noteForm.setValue(this.noteService.getPreviousNote());
+    console.log(this.noteService.getPreviousNote());
   }
 
   getAllNotes(){

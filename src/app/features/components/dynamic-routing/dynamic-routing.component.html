@@ -4,6 +4,6 @@
         <span (click)="aNewNote()" >New Note</span>
     </li>
     @for (note of noteList; track $index) {
-        <li [routerLink]="['' + note.id]"><span>{{note.title}}</span></li>
+        <li (click)="savePreviousNote(note)" [routerLink]="['' + note.id]"><span class="trim-sentence">{{note.title}}</span></li>
     }
 </ul>

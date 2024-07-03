@@ -7,15 +7,16 @@ import { Note } from '../../constants_models/data.types';
 export class NotesService {
 
   private readonly sessionStorageKey = 'notes';
+  private readonly previousNoteStorageKey = 'previous';
 
   constructor() { }
 
   getNotes(): Note[] {
-    return JSON.parse(sessionStorage.getItem(this.sessionStorageKey) || '[]');
+    return JSON.parse(localStorage.getItem(this.sessionStorageKey) || '[]');
   }
 
   saveNotes(notes: Note[]): void {
-    sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(notes));
+    localStorage.setItem(this.sessionStorageKey, JSON.stringify(notes));
   }
 
   addNote(newNote: Note): void {
@@ -44,6 +45,16 @@ export class NotesService {
     notes = notes.filter(note => note.id.toString() !== id);
     this.saveNotes(notes);
   }
+
+  previousNote( id : string){
+    localStorage.setItem(this.previousNoteStorageKey, id);
+  }
+
+  getPreviousNote() : Note{
+    const previousNoteId = localStorage.getItem(this.previousNoteStorageKey);
+    return this.findNoteById(previousNoteId!)!;
+  }
+
 
   private generateNoteId(): number {
     const notes = this.getNotes();

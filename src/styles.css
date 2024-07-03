@@ -25,3 +25,12 @@ a{
     text-decoration: none;
     color: #000;
 }
+
+/* Trim Sentence */
+.trim-sentence{
+    width: 11rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
