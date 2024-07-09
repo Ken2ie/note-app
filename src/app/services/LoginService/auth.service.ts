@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import bcrypt from "bcrypt";
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +9,26 @@ export class AuthService {
 
   private readonly sessionStorageKey = 'currentUser';
 
-  constructor() { }
+  constructor(private router : Router) { }
 
-  login(username: string, password: string): boolean {
-    // For demonstration purposes, we'll assume the username and password are 'user' and 'password'
-    if (username === 'user' && password === 'password') {
-      const user = { username };
-      sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(user));
-      return true;
+  async login(email: string, password: string) {
+
+    if(email == null && password == null) alert("Please provide email and password!");
+   if(this.getCurrentUser().email === email && await this.checkPasswordMatch(password)){
+      this.router.navigate(['/dashboard'])
+   } else {
+     alert("Login Unsuccessful!");
+   }
+  }
+
+  checkPasswordMatch(password : string)  {
+     return bcrypt.compare(password, this.getCurrentUser().password)
+  }
+
+  registration(email : string, password : string){
+    if(email && password){
+      const hashedPassword = bcrypt.hash(password, 10);
     }
-    return false;
   }
 
   logout(): void {

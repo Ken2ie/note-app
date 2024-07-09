@@ -17,7 +17,7 @@ export class LoginComponent {
   email! : string;
   password! : string;
 
-  // constructor(private auth : AuthService, private fb: FormBuilder){
+  constructor(private auth : AuthService){}
   //   this.loginForm = this.fb.group({
   //     email: ['', [Validators.required, Validators.email]],
   //     password: ['', [Validators.required, Validators.minLength(6)]]
@@ -35,14 +35,10 @@ export class LoginComponent {
   // //   }
   // // }
 
-  // login(email : string, password : string){
-  //   this.auth.login({
-  //     email: email,
-  //     password: password
-  //   }).subscribe({
-  //     next: (n) => {
-
-  //     }
-  //   })
-  // }
+  login(email : string, password : string){
+    this.auth.login(
+      email,
+      password
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Note } from '../../constants_models/data.types';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class NotesService {
   private readonly sessionStorageKey = 'notes';
   private readonly previousNoteStorageKey = 'previous';
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   getNotes(): Note[] {
     return JSON.parse(localStorage.getItem(this.sessionStorageKey) || '[]');
@@ -52,6 +53,7 @@ export class NotesService {
 
   getPreviousNote() : Note{
     const previousNoteId = localStorage.getItem(this.previousNoteStorageKey);
+    this.router.navigate(['/'+previousNoteId])
     return this.findNoteById(previousNoteId!)!;
   }
 

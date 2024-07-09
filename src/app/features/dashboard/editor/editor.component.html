@@ -8,11 +8,13 @@
         (input)="titleOnChanged()"
         placeholder="Untitled"
       />
-      <textarea
-        formControlName="noteBody"
-        (input)="adjustTextareaHeight($event)"
-        placeholder="Make notes!"
-      ></textarea>
+      <div class="textare">
+           <textarea
+             formControlName="noteBody"
+             (input)="adjustTextareaHeight($event)"
+             placeholder="Make notes!"
+           ></textarea>
+      </div>
     </form>
   </div>
 </div>

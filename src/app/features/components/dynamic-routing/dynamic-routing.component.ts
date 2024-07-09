@@ -27,7 +27,8 @@ export class DynamicRoutingComponent {
   constructor(private notesService: NotesService, private sharingData : SharingDataService) { }
 
   ngOnInit(): void {
-    this.getNotes()
+    this.getNotes();
+    this.notesService.getPreviousNote();
   }
 
   getNotes(){
@@ -39,7 +40,7 @@ export class DynamicRoutingComponent {
     this.getNotes();
   }
 
-  listToANoteChange(){
+  listenToANoteChange(){
     this.sharingData.data$.subscribe({
       next : (n : Note[]) => {
         this.noteList = n;
@@ -49,7 +50,7 @@ export class DynamicRoutingComponent {
 
   savePreviousNote(note : Note){
     this.notesService.previousNote(note.id.toString());
-    
+    this.getNotes();
   }
 
   aNewNote(){

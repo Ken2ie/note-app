@@ -2,7 +2,12 @@
     <div class="container">
         <div class="nav">
             <div class="user-profile">
-                <app-profile [userDetails]="userName"/>
+                <!-- <app-profile [userDetails]="userName"/> 
+                 -->
+                <div class="logo">
+                    <span class="n">N</span>
+                    <span>Note App</span>
+                </div>
             </div>
             <div class="menu">
                 <app-dynamic-routing (aNote)="receiveNote($event)"/>
